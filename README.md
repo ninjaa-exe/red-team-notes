@@ -1,53 +1,32 @@
-# Red-Team-Notes
-Trying to write down everything I learn
+# Red Team Notes
 
-Updating sometimes :)
+Personal knowledge base for offensive security, pentesting, CTFs and tooling.
 
-## Certifications
+This repository contains my study notes, practical references and quick cheatsheets
+for enumeration, exploitation, privilege escalation, web security and common tools.
 
-![https://imgur.com/a/LHvmPU0](https://i.imgur.com/GGdxMqX.png)
+## Structure
 
----
-## CTF
+- `Notes/` → core security concepts and methodologies
+- `Tools/` → practical tool references and cheatsheets
+- `Programming/` → language notes useful for security work
+- `Vulnerabilities/` → vulnerability classes, CVEs and exploitation notes
 
-[https://hackthebox.com](https://hackthebox.com) <br>
-[https://tryhackme.com](https://tryhackme.com) <br>
-[https://hackaflag.com.br](https://hackaflag.com.br) <br>
-[https://picoCTF.com.br](https://picoCTF.com.br) <br>
-[https://ctf101.org](https://ctf101.org/) <br>
-[https://247ctf.com](https://247ctf.com/) <br>
-[https://attackdefense.com](https://attackdefense.com/) <br>
-[https://ctflearn.com](https://ctflearn.com/) <br>
-[https://cryptohack.org](https://cryptohack.org/) <br>
-[https://www.hacksplaining.com](https://www.hacksplaining.com/) 
+## Start Here
 
----
-## Useful Material
-- Privilege escalation tool for Windows/Linux/Unix: https://github.com/peass-ng/PEASS-ng
-- BR version for rockyou: https://github.com/DavidFerreiraRocha/rockyoubr
-- Red Team Tools: https://github.com/A-poc/RedTeam-Tools
-- Reverse Shell Generator: https://www.revshells.com/
----
-## Events
+- [Nmap](./Tools/Nmap.md)
+- [Hashes](./Notes/Hash/Hash.md)
+- [Brute Force](./Notes/Brute%20Force/Brute%20Force.md)
+- [Information Gathering](./Notes/OSINT/Information%20Gathering.md)
+- [Vulnerabilities](./Vulnerabilities/README.md)
 
-- BHack
-- BSides
-- RoadSec
-- Vale Sec Conference
-- H2HC
-- Campus Party
-- DEFCONConference <br>
----
 ## Methodologies
-### PTES
-[http://www.pentest-standard.org/index.php/Main_Page](http://www.pentest-standard.org/index.php/Main_Page)<br>
-### OWASP
-[https://owasp.org](https://owasp.org/) <br>
-### NIST
-[https://www.ibm.com/br-pt/topics/nist](https://www.ibm.com/br-pt/topics/nist) <br>
-### OSSTMM
-[https://www.isecom.org/OSSTMM.3.pdf](https://www.isecom.org/OSSTMM.3.pdf)<br>
 
+- PTES
+- OWASP
+- NIST
+- OSSTMM
 
+## Disclaimer
 
-<p align="center"><img src="https://user-images.githubusercontent.com/74038190/229223156-0cbdaba9-3128-4d8e-8719-b6b4cf741b67.gif" /></p>
+All notes are for educational use, labs and authorized environments only.
