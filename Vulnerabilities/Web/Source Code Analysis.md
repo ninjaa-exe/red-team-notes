@@ -1,1 +1,0 @@
-É possível encontrar informações confidenciais, bem como outros links, códigos, etc., através do código fonte da página e suas subpáginas
